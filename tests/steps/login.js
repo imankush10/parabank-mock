@@ -1,38 +1,47 @@
-const { Given,When,Then,BeforeAll,AfterAll,Before,After,setDefaultTimeout } = require('@cucumber/cucumber');
-const { expect,chromium } = require('@playwright/test');
-const { LoginPage } = require('../pages/loginPage.js');
-const { before } = require("node:test");
+const { Given, When, Then, BeforeAll, AfterAll, Before, After, setDefaultTimeout } = require('@cucumber/cucumber');
+const { chromium } = require('playwright');
+const { expect } = require('@playwright/test');
+const { LoginPage } = require('../pages/loginPage');
 
 setDefaultTimeout(60000);
 
-let login,browser,context,page;
+let browser, context;
 
-BeforeAll(async()=>{
-    browser=await chromium.launch();
-
-})
-Before(async()=>{
-    context=await browser.newContext();
-    page=await context.newPage();
-})
-
-Given('user navigate to parabank {string}', async (url) => {
-  login = new LoginPage(page);
-  await login.launch(url);
+BeforeAll(async () => {
+  browser = await chromium.launch({ headless: false });
 });
 
-When('user enter username {string}', async (username) => {
-  await login.enterUsername(username);
+Before(async function () {
+  context = await browser.newContext();
+  this.page = await context.newPage();   
 });
 
-When('user enter password {string}', async (password) => {
-  await login.enterPassword(password);
+After(async function () {
+  await context.close();
 });
 
-When('user click on login button', async () => {
-  await login.clickLogin();
+AfterAll(async () => {
+  await browser.close();
 });
 
-Then('user should be logged in successfully', async () => {
-  await expect(login.dashboard).toBeVisible();
+
+Given('user navigate to parabank {string}', async function (url) {
+  this.login = new LoginPage(this.page);
+  await this.login.launch(url);
+});
+
+When('user enter username {string}', async function (username) {
+  await this.login.enterUsername(username);
+});
+
+When('user enter password {string}', async function (password) {
+  await this.login.enterPassword(password);
+});
+
+When('user click on login button', async function () {
+  await this.login.clickLogin();
+});
+
+Then('user should be logged in successfully', async function () {
+  await expect(this.login.dashboard).toBeVisible();
 });
