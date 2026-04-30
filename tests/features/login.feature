@@ -1,5 +1,5 @@
 Feature: Parabank Login
-
+@login
 Scenario Outline: Successful login
   Given user navigate to parabank "https://parabank.parasoft.com/parabank/index.htm"
   When user enter username "<username>"
@@ -9,4 +9,4 @@ Scenario Outline: Successful login
 
 Examples:
     | username | password |
-    | harman@123  | Harman@123 |
+    | john  | demo |
