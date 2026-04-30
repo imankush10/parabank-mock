@@ -10,18 +10,15 @@ setDefaultTimeout(60000);
 let browser, context;
 let update;
 
-// 🔹 Launch browser once
 BeforeAll(async () => {
   browser = await chromium.launch({ headless: false });
 });
 
-// 🔹 Create new page per scenario
 Before(async function () {
   context = await browser.newContext();
-  this.page = await context.newPage();   // ✅ shared page
+  this.page = await context.newPage();   
 });
 
-// 🔹 Cleanup
 After(async function () {
   await context.close();
 });
@@ -31,7 +28,6 @@ AfterAll(async () => {
 });
 
 
-// 🔥 LOGIN STEP (FINAL FIXED)
 Given('user logs in with username {string} and password {string}', async function (username, password) {
   const login = new LoginPage(this.page);
 
@@ -40,20 +36,17 @@ Given('user logs in with username {string} and password {string}', async functio
   await login.enterPassword(password);
   await login.clickLogin();
 
-  // wait for page load
   await this.page.waitForLoadState('networkidle');
 
-  // 🔥 handle error case
   if (await login.errorMsg.isVisible()) {
     throw new Error("Login failed - invalid username/password");
   }
 
-  // ✅ success case
   await expect(login.dashboard).toBeVisible();
 });
 
 
-// 🔹 Update steps
+
 When('user navigates to update contact info page', async function () {
   update = new UpdateContact(this.page);
   await update.navigateToUpdatePage();
@@ -90,7 +83,7 @@ When('updates phone number {string}', async function (phone) {
 When('clicks update button', async function () {
   await update.clickUpdate();
 
-  // 🔥 WAIT FOR PAGE UPDATE
+
   await this.page.waitForLoadState('networkidle');
 });
 
@@ -100,13 +93,12 @@ if (await update.errorMsg.isVisible()) {
   throw new Error("Update failed");
 }
 
-// success
+
 Then('should see update success message {string}', async function (message) {
 
   const success = this.page.getByRole('heading', { name: 'Profile Updated' });
   const error = this.page.getByRole('heading', { name: 'Error!' });
 
-  // wait for either success or error to appear
   await this.page.waitForLoadState('networkidle');
 
   if (await error.isVisible()) {

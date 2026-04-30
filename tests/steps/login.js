@@ -7,18 +7,15 @@ setDefaultTimeout(60000);
 
 let browser, context;
 
-// 🔹 Launch browser once
 BeforeAll(async () => {
   browser = await chromium.launch({ headless: false });
 });
 
-// 🔹 Create page per scenario
 Before(async function () {
   context = await browser.newContext();
-  this.page = await context.newPage();   // ✅ IMPORTANT
+  this.page = await context.newPage();   
 });
 
-// 🔹 Cleanup
 After(async function () {
   await context.close();
 });
@@ -28,7 +25,6 @@ AfterAll(async () => {
 });
 
 
-// 🔹 Steps
 Given('user navigate to parabank {string}', async function (url) {
   this.login = new LoginPage(this.page);
   await this.login.launch(url);
