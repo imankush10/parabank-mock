@@ -5,20 +5,21 @@ class LoginPage {
     this.username = page.locator('input[name="username"]');
     this.password = page.locator('input[name="password"]');
     this.loginBtn = page.locator('input[value="Log In"]');
+
     this.dashboard = page.getByRole('heading', { name: 'Accounts Overview' });
-    this.errorMsg = page.locator('.error');
+this.errorMsg = page.getByRole('heading', { name: 'Error!' }); // success indicator
   }
 
   async launch(url) {
     await this.page.goto(url);
   }
 
-  async enterUsername(data) {
-    await this.username.fill(data);
+  async enterUsername(username) {
+    await this.username.fill(username);
   }
 
-  async enterPassword(data) {
-    await this.password.fill(data);
+  async enterPassword(password) {
+    await this.password.fill(password);
   }
 
   async clickLogin() {
