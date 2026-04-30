@@ -46,6 +46,11 @@ Given("enter transfer amount {string}", async (amount) => {
     await enterpage.enterAmountToTransfer(amount);
 });
 
+// Then("message visible should be {string}",async(message)=>{
+//     await expect(enterpage.congratulationsTextFeild).toHaveText(message);
+//     console.log(`Verified message: ${message}`);
+// })
+
 After(async () => {
     await browser.close();
 });

@@ -25,8 +25,6 @@ class Register{
     await this.page.goto(url);
   }
 
-
-
   async enterFirstName(name) {
     await this.firstName.fill(name);
   }

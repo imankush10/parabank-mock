@@ -22,6 +22,7 @@ After(async function () {
 AfterAll(async () => {
   await browser.close();
 });
+
 Given("navigate to {string}", async function (url) {
   register = new Register(page);
   await register.launch(url);
