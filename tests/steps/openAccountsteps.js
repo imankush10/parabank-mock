@@ -1,7 +1,6 @@
-const {test}=require("../fixture");
 const { openAccount }=require("../pages/openAccountpage");
-const { Given, When, Then, Before, After, setDefaultTimeout }=require('@cucumber/cucumber');
-const { expect, chromium }=require("@playwright/test");
+const { Given, When, Then, Before, After, setDefaultTimeout, BeforeAll }=require('@cucumber/cucumber');
+const { expect, chromium ,test}=require("@playwright/test");
 
 let browser, context, page, enterpage;
 setDefaultTimeout(60000);
@@ -21,7 +20,7 @@ Given("click on Open New Account link", async () => {
     await enterpage.clickOpenNewAccount();
 });
 
-Given("select account type as {string}", async (accountType) => {
+Given("select account type as savings", async (accountType) => {
     await enterpage.selectAccountTypeAsSavings();
 });
 
@@ -45,11 +44,6 @@ Given("click on Transfer Funds link", async () => {
 Given("enter transfer amount {string}", async (amount) => {
     await enterpage.enterAmountToTransfer(amount);
 });
-
-// Then("message visible should be {string}",async(message)=>{
-//     await expect(enterpage.congratulationsTextFeild).toHaveText(message);
-//     console.log(`Verified message: ${message}`);
-// })
 
 After(async () => {
     await browser.close();

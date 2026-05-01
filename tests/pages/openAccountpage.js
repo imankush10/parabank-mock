@@ -10,7 +10,6 @@ class openAccount {
         this.amountTextFeild = page.locator('//input[@id="amount"]');
         this.fromAccountSelection = page.locator('//select[@id="fromAccountId"]');
         this.toAccountSelection = page.locator('//select[@id="toAccountId"]');
-        // this.congratulationsTextFeild = page.locator('//p[text()="Congratulations, your account is now open."]');
     }
 
     async launchurl(url) {
@@ -22,14 +21,14 @@ class openAccount {
     }
 
     async selectAccountTypeAsSavings() {
-        await this.accountTypeAsSavings.selectOption("1"); 
+        await this.accountTypeAsSavings.selectOption({index:1}); 
     }
 
     async selectAccountToTransferFundsForNewAccount() {
         await this.selectTransferFundsToAccount.selectOption({ index: 0 });
     }
 
-    async clickOpenNewAccountBtn() { // Renamed slightly to avoid duplicate function name
+    async clickOpenNewAccountBtn() { 
         await this.openNewAccountButton.click();
     }
 

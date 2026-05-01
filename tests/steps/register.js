@@ -23,10 +23,10 @@ AfterAll(async () => {
   await browser.close();
 });
 
-Given("navigate to {string}", async function (url) {
-  register = new Register(page);
-  await register.launch(url);
-});
+// Given("navigate to {string}", async function (url) {
+//   register = new Register(page);
+//   await register.launch(url);
+// });
 
 When("enter firstname {string}", async function (fname) {
   await register.enterFirstName(fname);
