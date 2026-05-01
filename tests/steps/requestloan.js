@@ -21,11 +21,11 @@ Given('navigate to {string}', async function (url) {
   await this.loanpg.launchURL(url);
 });
 
-When(/^enter username (.*)$/, async function (username) {
+When('enter username {string}', async function (username) {
   await this.loanpg.userName(username);
 });
 
-When(/^enter password (.*)$/, async function (password) {
+When('enter password {string}', async function (password) {
   await this.loanpg.password(password);
 });
 
@@ -37,23 +37,23 @@ When('click on Request Loan tab', async function () {
   await this.loanpg.clickRequestLoan();
 });
 
-When(/^enter Loan Amount (.*)$/, async function (amount) {
+When('enter Loan Amount {int}', async function (amount) {
   await this.loanpg.enterLoanAmount(amount);
 });
 
-When(/^enter Down Payment (.*)$/, async function (downPayment) {
+When('enter Down Payment {int}', async function (downPayment) {
   await this.loanpg.enterDownPayment(downPayment);
 });
 
-When(/^select From Account (.*)$/, async function (accountId) {
-  await this.loanpg.selectFromAccount(accountId);
+When('select From Account', async function () {
+  await this.loanpg.selectFromAccount();
 });
 
 When('click on Apply now', async function () {
   await this.loanpg.clickApplyNow();
 });
 
-Then(/^should see Status as (.*)$/, async function (status) {
+Then('should see Status as {string}', async function (status) {
   const actualStatus = await this.loanpg.getLoanStatus();
   expect(actualStatus).toBe(status);
 });

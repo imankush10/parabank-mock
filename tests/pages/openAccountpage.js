@@ -29,7 +29,7 @@ class openAccount {
         await this.selectTransferFundsToAccount.selectOption({ index: 0 });
     }
 
-    async clickOpenNewAccountBtn() { 
+    async clickOpenNewAccountBtn() { // Renamed slightly to avoid duplicate function name
         await this.openNewAccountButton.click();
     }
 

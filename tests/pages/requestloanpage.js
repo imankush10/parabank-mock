@@ -7,7 +7,7 @@ class RequestLoan {
     this.RequestloanBTN = page.locator('//a[text()="Request Loan"]');
     this.LoanAmountTF = page.locator('input#amount');
     this.DownPaymentTF = page.locator('input#downPayment');
-    this.FromAccountDDL = page.locator('select#fromAccountId');
+    this.FromAccountDDL = page.locator('//*[@id="newAccountId"]');
     this.ApplyNowBTN = page.locator('//input[@value="Apply Now"]');
     this.statusCell = page.locator('//td[@id="loanStatus"]');
   }
@@ -43,11 +43,12 @@ class RequestLoan {
     await this.DownPaymentTF.fill(downPayment.toString());
   }
 
-  async selectFromAccount(accountId) {
+  async selectFromAccount() {
     await this.FromAccountDDL.waitFor({ state: 'visible' });
-    await this.FromAccountDDL.selectOption(accountId.toString());
+    const firstOption = await this.FromAccountDDL.locator('option').first();
+    const firstValue = await firstOption.getAttribute('value');
+    await this.FromAccountDDL.selectOption(firstValue);
   }
-
   async clickApplyNow() {
     await this.ApplyNowBTN.click();
     await this.page.waitForLoadState('networkidle');
