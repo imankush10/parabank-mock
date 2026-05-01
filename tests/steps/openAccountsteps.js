@@ -20,7 +20,7 @@ Given("click on Open New Account link", async () => {
     await enterpage.clickOpenNewAccount();
 });
 
-Given("select account type as savings", async (accountType) => {
+Given("select account type as savings", async () => {
     await enterpage.selectAccountTypeAsSavings();
 });
 

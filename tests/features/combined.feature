@@ -1,4 +1,4 @@
-@complete
+@completeFeatureFile
 Feature: Parabank Combined Scenarios
 
   @login
