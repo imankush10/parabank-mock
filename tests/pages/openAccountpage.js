@@ -21,16 +21,14 @@ class openAccount {
     }
 
     async selectAccountTypeAsSavings() {
-        // ParaBank SAVINGS value is typically "1"
         await this.accountTypeAsSavings.selectOption("1"); 
     }
 
     async selectAccountToTransferFundsForNewAccount() {
-        // selectOption is required to interact with dropdowns
         await this.selectTransferFundsToAccount.selectOption({ index: 0 });
     }
 
-    async clickOpenNewAccountBtn() { // Renamed slightly to avoid duplicate function name
+    async clickOpenNewAccountBtn() {
         await this.openNewAccountButton.click();
     }
 
