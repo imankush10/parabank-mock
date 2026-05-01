@@ -2,7 +2,7 @@ Feature: Register
 @register
 Scenario Outline: Fill and Register Successfully
 
-Given navigate to "https://parabank.parasoft.com/parabank/register.htm"
+Given  navigate to  "https://parabank.parasoft.com/parabank/register.htm"
 
 And enter firstname "<firstname>"
 And enter lastname "<lastname>"

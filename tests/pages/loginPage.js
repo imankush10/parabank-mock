@@ -5,9 +5,8 @@ class LoginPage {
     this.username = page.locator('input[name="username"]');
     this.password = page.locator('input[name="password"]');
     this.loginBtn = page.locator('input[value="Log In"]');
-
     this.dashboard = page.getByRole('heading', { name: 'Accounts Overview' });
-this.errorMsg = page.getByRole('heading', { name: 'Error!' }); 
+    this.errorMsg = page.getByRole('heading', { name: 'Error!' }); 
   }
 
   async launch(url) {

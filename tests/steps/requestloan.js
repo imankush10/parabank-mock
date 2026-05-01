@@ -17,9 +17,9 @@ After(async function () {
   await this.browser?.close();
 });
 
-Given('navigate to {string}', async function (url) {
-  await this.loanpg.launchURL(url);
-});
+// Given('navigate to {string}', async function (url) {
+//   await this.loanpg.launchURL(url);
+// });
 
 When('enter username {string}', async function (username) {
   await this.loanpg.userName(username);

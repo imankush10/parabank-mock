@@ -21,14 +21,14 @@ class openAccount {
     }
 
     async selectAccountTypeAsSavings() {
-        await this.accountTypeAsSavings.selectOption("1"); 
+        await this.accountTypeAsSavings.selectOption({index:1}); 
     }
 
     async selectAccountToTransferFundsForNewAccount() {
         await this.selectTransferFundsToAccount.selectOption({ index: 0 });
     }
 
-    async clickOpenNewAccountBtn() {
+    async clickOpenNewAccountBtn() { 
         await this.openNewAccountButton.click();
     }
 

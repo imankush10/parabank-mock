@@ -1,7 +1,6 @@
-const {test}=require("../fixture");
 const { openAccount }=require("../pages/openAccountpage");
-const { Given, When, Then, Before, After, setDefaultTimeout }=require('@cucumber/cucumber');
-const { expect, chromium }=require("@playwright/test");
+const { Given, When, Then, Before, After, setDefaultTimeout, BeforeAll }=require('@cucumber/cucumber');
+const { expect, chromium ,test}=require("@playwright/test");
 
 let browser, context, page, enterpage;
 setDefaultTimeout(60000);
@@ -21,7 +20,7 @@ Given("click on Open New Account link", async () => {
     await enterpage.clickOpenNewAccount();
 });
 
-Given("select account type as {string}", async (accountType) => {
+Given("select account type as savings", async () => {
     await enterpage.selectAccountTypeAsSavings();
 });
 
